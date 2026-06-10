@@ -195,7 +195,12 @@
             .hero-char { width: clamp(100px, 14vw, 180px); }
         }
         @media (max-width: 600px) {
-            .hero-char { display: none; }
+            .hero-char {
+                width: 88px;
+                bottom: 24px;
+            }
+            .hero-char-left  { left: -8px; }
+            .hero-char-right { right: -8px; }
         }
 
         /* ── SCENES (editorial) ───────────────────── */
@@ -458,7 +463,7 @@
             .scene-row-aside { display: none; }
         }
         @media (max-width: 600px) {
-            .hero { padding: 72px 20px 130px; }
+            .hero { padding: 60px 20px 160px; }
             .products-grid { grid-template-columns: 1fr; }
             .sec-scenes .container { padding: 0 24px; }
             .sec-engrave, .sec-products,
