@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏の推し活に名入れハンディファン！ | 腕時計のななぷれ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --blue:   #1E7FD8;
+            --purple: #6B4FCC;
+            --pink:   #C054B0;
+            --dark:   #0D1F40;
+            --mid:    #2E4A78;
+            --muted:  #7A96C0;
+            --bg:     #F4F8FF;
+            --bg2:    #EBF3FF;
+            --grad:        linear-gradient(135deg, #1E7FD8 0%, #6B4FCC 55%, #C054B0 100%);
+            --grad-soft:   linear-gradient(135deg, #DBEAFE 0%, #EDE9FE 60%, #F3E8FF 100%);
+            --grad-text:   linear-gradient(135deg, #1E7FD8 0%, #6B4FCC 55%, #C054B0 100%);
+            --shadow:      0 4px 24px rgba(30,127,216,.12);
+            --shadow-h:    0 20px 60px rgba(30,127,216,.22);
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.6;
+            letter-spacing: 0.04em;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { display: block; max-width: 100%; }
+        a   { text-decoration: none; }
+
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+        .tc { text-align: center; }
+
+        .eyebrow {
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 10px; font-weight: 600;
+            letter-spacing: .4em; text-transform: uppercase;
+            color: var(--purple); margin-bottom: 12px;
+        }
+        .heading {
+            font-size: clamp(24px, 4vw, 38px);
+            font-weight: 800; line-height: 1.25; color: var(--dark);
+            letter-spacing: .02em;
+        }
+        .desc {
+            font-size: 15px; color: var(--mid);
+            font-weight: 300; line-height: 1.9; margin-top: 12px;
+            letter-spacing: .06em;
+        }
+        .grad-text {
+            background: var(--grad-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── KEYFRAMES ────────────────────────────── */
+        @keyframes gradFlow {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes tickerMove {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-10px); }
+        }
+        @keyframes priceAppear {
+            0%   { opacity:0; transform: scale(.88) translateY(12px); }
+            100% { opacity:1; transform: scale(1) translateY(0); }
+        }
+
+        /* ── SCROLL ANIMATIONS ────────────────────── */
+        [data-anim] {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity .75s cubic-bezier(.22,.61,.36,1),
+                        transform .75s cubic-bezier(.22,.61,.36,1);
+        }
+        [data-anim="left"]  { transform: translateX(-36px); }
+        [data-anim="right"] { transform: translateX(36px); }
+        [data-anim="scale"] { transform: scale(.93) translateY(16px); }
+        [data-anim].in-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── HERO ─────────────────────────────────── */
+        .hero {
+            background: linear-gradient(-45deg, #0B4FA8, #1E7FD8, #4A2FB5, #B84DA8, #1E7FD8, #0B4FA8);
+            background-size: 400% 400%;
+            animation: gradFlow 14s ease infinite;
+            padding: 100px 24px 150px;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .hero-inner { position: relative; z-index: 1; }
+
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,.18);
+            border: 1px solid rgba(255,255,255,.35);
+            backdrop-filter: blur(12px);
+            color: white; font-size: 10px; font-weight: 600;
+            letter-spacing: .35em; text-transform: uppercase;
+            font-family: 'Outfit', sans-serif;
+            padding: 7px 24px; border-radius: 50px; margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 7vw, 64px);
+            font-weight: 900; color: white;
+            line-height: 1.2; letter-spacing: .02em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 30px rgba(0,0,0,.15);
+        }
+        .hero h1 .accent { color: #C8E8FF; }
+        .hero-sub {
+            font-size: clamp(14px, 2.5vw, 19px);
+            color: rgba(255,255,255,.88);
+            font-weight: 300; letter-spacing: .12em;
+            margin-bottom: 40px;
+        }
+        .hero-tags {
+            display: flex; justify-content: center;
+            flex-wrap: wrap; gap: 12px; margin-bottom: 52px;
+        }
+        .hero-tag {
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.3);
+            color: white; padding: 8px 22px;
+            border-radius: 50px; font-size: 13px; font-weight: 500;
+            letter-spacing: .04em;
+        }
+        .hero-btn {
+            display: inline-block;
+            background: white; color: var(--purple);
+            font-size: 15px; font-weight: 700;
+            padding: 18px 56px; border-radius: 50px;
+            box-shadow: 0 8px 40px rgba(0,0,0,.2);
+            letter-spacing: .04em;
+            transition: transform .25s, box-shadow .25s;
+        }
+        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 60px rgba(0,0,0,.28); }
+        .hero-wave {
+            position: absolute; bottom: -2px; left: 0; width: 100%;
+        }
+
+        /* ── HERO CHARACTERS ─────────────────────── */
+        .hero-char {
+            position: absolute;
+            bottom: 0;
+            width: clamp(160px, 18vw, 280px);
+            pointer-events: none;
+            z-index: 2;
+        }
+        .hero-char img {
+            width: 100%; height: auto; display: block;
+            filter: drop-shadow(0 8px 24px rgba(0,0,0,.18));
+        }
+        .hero-char-left  {
+            left: clamp(0px, 3vw, 60px);
+            transform: translateX(-120%) rotate(-4deg);
+            animation: charPopLeft 1s cubic-bezier(.34,1.56,.64,1) .4s forwards;
+        }
+        .hero-char-right {
+            right: clamp(0px, 3vw, 60px);
+            transform: translateX(120%) rotate(4deg);
+            animation: charPopRight 1s cubic-bezier(.34,1.56,.64,1) .55s forwards;
+        }
+        @keyframes charPopLeft {
+            0%   { transform: translateX(-120%) rotate(-4deg); }
+            70%  { transform: translateX(4%) rotate(1deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+        @keyframes charPopRight {
+            0%   { transform: translateX(120%) rotate(4deg); }
+            70%  { transform: translateX(-4%) rotate(-1deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+        @media (max-width: 960px) {
+            .hero-char { width: clamp(100px, 14vw, 180px); }
+        }
+        @media (max-width: 600px) {
+            .hero-char { display: none; }
+        }
+
+        /* ── SCENES (editorial) ───────────────────── */
+        .sec-scenes { background: white; padding: 96px 0; overflow: hidden; }
+        .sec-scenes .container { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+        .scenes-header { padding-bottom: 48px; text-align: left; }
+
+        .scene-list { border-top: 1px solid rgba(30,127,216,.12); }
+
+        .scene-row {
+            display: grid;
+            grid-template-columns: 64px 1fr 140px;
+            gap: 48px;
+            align-items: start;
+            padding: 52px 0;
+            border-bottom: 1px solid rgba(30,127,216,.1);
+            position: relative;
+            cursor: default;
+            transition: background .3s;
+        }
+        .scene-row::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0; width: 3px;
+            background: var(--grad);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .scene-row:hover { background: rgba(30,127,216,.025); }
+        .scene-row:hover::before { opacity: 1; }
+
+        .scene-row-num {
+            font-size: 12px; font-weight: 700;
+            letter-spacing: .18em; color: var(--blue);
+            padding-top: 14px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .scene-row-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            letter-spacing: .04em;
+        }
+        .scene-row-body {
+            font-size: 14px; color: var(--mid);
+            font-weight: 300; line-height: 1.9;
+            max-width: 540px;
+            letter-spacing: .07em;
+        }
+
+        .scene-row-aside {
+            text-align: right; padding-top: 14px;
+        }
+        .scene-row-en {
+            display: block;
+            font-size: 10px; font-weight: 700;
+            letter-spacing: .28em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 12px;
+        }
+        .scene-row-tag {
+            display: inline-block;
+            border: 1px solid rgba(30,127,216,.25);
+            color: var(--blue); font-size: 11px; font-weight: 600;
+            padding: 4px 14px; border-radius: 50px;
+            letter-spacing: .06em;
+        }
+
+        /* ── TICKER ───────────────────────────────── */
+        .ticker-wrap {
+            background: var(--dark);
+            overflow: hidden; padding: 14px 0;
+            white-space: nowrap;
+            user-select: none;
+        }
+        .ticker-track {
+            display: inline-flex; align-items: center;
+            animation: tickerMove 28s linear infinite;
+        }
+        .ticker-item {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: .3em; text-transform: uppercase;
+            color: rgba(255,255,255,.55);
+            padding: 0 28px;
+        }
+        .ticker-dot {
+            color: var(--blue); font-size: 14px;
+            opacity: .8;
+        }
+
+        /* ── ENGRAVING ────────────────────────────── */
+        .sec-engrave { background: var(--bg2); padding: 96px 24px; }
+        .engrave-card {
+            background: linear-gradient(-45deg, #0B4FA8, #1E7FD8, #4A2FB5, #B84DA8, #1E7FD8, #0B4FA8);
+            background-size: 400% 400%;
+            animation: gradFlow 14s ease infinite;
+            border-radius: 28px; padding: 72px 48px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .engrave-inner { position: relative; z-index: 1; }
+        .eng-pill {
+            display: inline-block;
+            background: rgba(255,255,255,.2);
+            border: 1px solid rgba(255,255,255,.4);
+            color: white; font-size: 10px; font-weight: 700;
+            letter-spacing: .25em; text-transform: uppercase;
+            padding: 6px 18px; border-radius: 50px; margin-bottom: 24px;
+        }
+        .engrave-card h2 {
+            font-size: clamp(26px, 4.5vw, 44px);
+            font-weight: 900; color: white;
+            line-height: 1.3; margin-bottom: 16px;
+        }
+        .engrave-card p {
+            font-size: 15px; color: rgba(255,255,255,.88);
+            font-weight: 300; line-height: 1.85;
+            margin-bottom: 36px;
+            max-width: 560px; margin-left: auto; margin-right: auto;
+        }
+        .price-box {
+            display: inline-flex; align-items: baseline; gap: 4px;
+            background: rgba(255,255,255,.15);
+            border: 2px solid rgba(255,255,255,.5);
+            padding: 14px 44px; border-radius: 50px;
+            color: white; margin-bottom: 36px;
+            animation: floatY 3.5s ease-in-out infinite;
+        }
+        .price-box .plus { font-size: 22px; font-weight: 900; }
+        .price-box .yen  { font-size: 18px; font-weight: 500; margin-left: 4px; }
+        .price-box .num  { font-size: 50px; font-weight: 900; line-height: 1; }
+        .price-box .tax  { font-size: 13px; font-weight: 300; }
+        .eng-btn {
+            display: inline-block;
+            background: white; color: var(--purple);
+            font-size: 14px; font-weight: 700;
+            padding: 14px 44px; border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.15);
+            letter-spacing: .05em;
+            transition: transform .2s;
+        }
+        .eng-btn:hover { transform: translateY(-2px); }
+
+        /* ── PRODUCTS ─────────────────────────────── */
+        .sec-products { background: var(--bg); padding: 96px 24px; }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 28px; margin-top: 56px;
+        }
+        .prod-card {
+            background: white; border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(167,139,250,.10);
+            box-shadow: var(--shadow);
+            display: flex; flex-direction: column;
+            transition: transform .3s, box-shadow .3s;
+        }
+        .prod-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-h); }
+        .prod-img-box {
+            position: relative;
+            background: var(--grad-soft); overflow: hidden;
+        }
+        .prod-img-box img {
+            width: 100%; height: 220px; object-fit: cover;
+            transition: transform .4s;
+        }
+        .prod-card:hover .prod-img-box img { transform: scale(1.07); }
+        .prod-badge {
+            position: absolute; top: 14px; left: 14px;
+            background: var(--grad);
+            color: white; font-size: 9.5px; font-weight: 700;
+            letter-spacing: .12em; padding: 4px 12px; border-radius: 50px;
+        }
+        .prod-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+        .prod-feat {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: var(--grad-soft); color: var(--purple);
+            font-size: 11px; font-weight: 700;
+            padding: 5px 14px; border-radius: 50px;
+            width: fit-content; margin-bottom: 12px;
+        }
+        .prod-name {
+            font-size: 14px; font-weight: 700;
+            color: var(--dark); line-height: 1.5; margin-bottom: 10px;
+        }
+        .prod-colors { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+        .prod-colors-lbl { font-size: 11px; color: var(--muted); margin-right: 4px; }
+        .cdot {
+            width: 14px; height: 14px; border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 1.5px rgba(0,0,0,.12);
+        }
+        .prod-spec { font-size: 11.5px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; flex: 1; }
+        .prod-btn {
+            display: flex; align-items: center; justify-content: center;
+            background: var(--grad); color: white;
+            font-size: 13px; font-weight: 700;
+            padding: 12px; border-radius: 12px;
+            letter-spacing: .04em;
+            transition: opacity .2s, transform .2s;
+        }
+        .prod-btn:hover { opacity: .88; transform: translateY(-1px); }
+
+        /* ── HOW TO ───────────────────────────────── */
+        .sec-howto { background: white; padding: 96px 24px; }
+        .steps { max-width: 680px; margin: 60px auto 0; }
+        .step {
+            display: flex; gap: 28px; align-items: flex-start;
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(167,139,250,.12);
+        }
+        .step:last-child { border-bottom: none; }
+        .step-num {
+            min-width: 52px; height: 52px;
+            background: var(--grad); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 900; color: white;
+            box-shadow: 0 4px 16px rgba(167,139,250,.4);
+        }
+        .step-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .step-body p  { font-size: 13.5px; color: var(--mid); font-weight: 300; line-height: 1.85; }
+        .step-body a  { color: var(--purple); font-weight: 500; border-bottom: 1px solid rgba(167,139,250,.4); }
+        .step-body a:hover { border-color: var(--purple); }
+
+        /* ── FOOTER CTA ───────────────────────────── */
+        .sec-footer-cta {
+            background: linear-gradient(-45deg, #0B4FA8, #1E7FD8, #4A2FB5, #B84DA8, #1E7FD8, #0B4FA8);
+            background-size: 400% 400%;
+            animation: gradFlow 14s ease infinite;
+            padding: 100px 24px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .footer-cta-inner { position: relative; z-index: 1; }
+        .sec-footer-cta h2 {
+            font-size: clamp(28px, 4.5vw, 44px);
+            font-weight: 900; color: white;
+            margin-bottom: 16px; line-height: 1.3;
+        }
+        .sec-footer-cta p {
+            font-size: 15px; color: rgba(255,255,255,.85);
+            font-weight: 300; margin-bottom: 44px;
+        }
+        .footer-btn {
+            display: inline-block;
+            background: white; color: var(--purple);
+            font-size: 16px; font-weight: 700;
+            padding: 18px 64px; border-radius: 50px;
+            box-shadow: 0 8px 40px rgba(0,0,0,.2);
+            letter-spacing: .05em;
+            transition: transform .25s, box-shadow .25s;
+        }
+        .footer-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 60px rgba(0,0,0,.28); }
+
+        /* ── RESPONSIVE ───────────────────────────── */
+        @media (max-width: 960px) {
+            .products-grid { grid-template-columns: repeat(2,1fr); }
+            .scene-row { grid-template-columns: 48px 1fr; gap: 28px; }
+            .scene-row-aside { display: none; }
+        }
+        @media (max-width: 600px) {
+            .hero { padding: 72px 20px 130px; }
+            .products-grid { grid-template-columns: 1fr; }
+            .sec-scenes .container { padding: 0 24px; }
+            .sec-engrave, .sec-products,
+            .sec-howto, .sec-footer-cta { padding: 64px 20px; }
+            .sec-scenes { padding: 64px 0; }
+            .engrave-card  { padding: 48px 24px; }
+            .price-box .num { font-size: 38px; }
+            .step { gap: 18px; }
+            .scene-row { grid-template-columns: 40px 1fr; gap: 20px; padding: 36px 0; }
+            .scene-row-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========================================================
+     HERO
+======================================================== -->
+<section class="hero">
+    <!-- 左キャラクター -->
+    <div class="hero-char hero-char-left">
+        <img src="osikatu01.png" alt="推し活キャラクター">
+    </div>
+    <!-- 右キャラクター -->
+    <div class="hero-char hero-char-right">
+        <img src="osikatu02.png" alt="推し活キャラクター">
+    </div>
+
+    <div class="hero-inner container">
+        <div class="hero-pill">✦ Summer Special 2026</div>
+        <h1>夏の推し活に、<span class="accent">名入れ</span><br>ハンディファン！</h1>
+        <p class="hero-sub">チームで、ギフトに、推し活に。世界にひとつだけの一台を。</p>
+        <div class="hero-tags">
+            <span class="hero-tag">✧ 推し活に</span>
+            <span class="hero-tag">✧ ギフトに</span>
+            <span class="hero-tag">✧ チームで</span>
+            <span class="hero-tag">✧ +680円で名入れ刻印</span>
+        </div>
+        <a href="#products" class="hero-btn">商品ラインナップを見る ↓</a>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#F4F8FF"/>
+    </svg>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+    <div class="ticker-track">
+        <span class="ticker-item">名入れ刻印</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">推し活に</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">ギフトに</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">チームで</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">Engraving +¥680</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">Handy Fan 2026</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">Nanaple Select</span><span class="ticker-dot">✦</span>
+        <!-- 2周目（シームレスループ用） -->
+        <span class="ticker-item">名入れ刻印</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">推し活に</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">ギフトに</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">チームで</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">Engraving +¥680</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">Handy Fan 2026</span><span class="ticker-dot">✦</span>
+        <span class="ticker-item">Nanaple Select</span><span class="ticker-dot">✦</span>
+    </div>
+</div>
+
+<!-- ========================================================
+     SCENES
+======================================================== -->
+<section class="sec-scenes">
+    <div class="container">
+        <div class="scenes-header" data-anim>
+            <span class="eyebrow">Use Scenes</span>
+            <h2 class="heading">名入れが活きる、3つのシーン</h2>
+            <p class="desc" style="max-width:480px">ハンディファンに名前を刻んだその瞬間、<br>普通の夏グッズが特別な一台になる。</p>
+        </div>
+
+        <div class="scene-list">
+
+            <div class="scene-row" data-anim="left">
+                <div class="scene-row-num">01</div>
+                <div class="scene-row-main">
+                    <h3 class="scene-row-title grad-text">推し活に</h3>
+                    <p class="scene-row-body">ライブ・フェス・イベントの現場へ、推しの名前や大好きなフレーズを刻んだ一台を持っていこう。ファン仲間の中でもひと目を引く、あなただけの夏の必需品に。</p>
+                </div>
+                <div class="scene-row-aside">
+                    <span class="scene-row-en">For OSHI</span>
+                    <span class="scene-row-tag">推し活</span>
+                </div>
+            </div>
+
+            <div class="scene-row" data-anim="left" data-delay=".15s">
+                <div class="scene-row-num">02</div>
+                <div class="scene-row-main">
+                    <h3 class="scene-row-title grad-text">ギフトに</h3>
+                    <p class="scene-row-body">誕生日・母の日・卒業記念・サプライズプレゼントに。名前やメッセージをレーザー刻印することで、どこにも売っていない世界にひとつだけのギフトが完成します。</p>
+                </div>
+                <div class="scene-row-aside">
+                    <span class="scene-row-en">For Gift</span>
+                    <span class="scene-row-tag">プレゼント</span>
+                </div>
+            </div>
+
+            <div class="scene-row" data-anim="left" data-delay=".3s">
+                <div class="scene-row-num">03</div>
+                <div class="scene-row-main">
+                    <h3 class="scene-row-title grad-text">チームで</h3>
+                    <p class="scene-row-body">部活・サークル・職場・推しグループでお揃いを。チーム名やメンバーの名前をそれぞれ刻印して、夏のオリジナルグッズとして活用できます。</p>
+                </div>
+                <div class="scene-row-aside">
+                    <span class="scene-row-en">For Team</span>
+                    <span class="scene-row-tag">お揃い</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================
+     ENGRAVING
+======================================================== -->
+<section class="sec-engrave">
+    <div class="container">
+        <div class="engrave-card" data-anim="scale">
+            <div class="engrave-inner">
+                <span class="eng-pill">✦ Name Engraving Option</span>
+                <h2>名入れ刻印オプションで<br>特別な一台に</h2>
+                <p>
+                    お好きなハンディファンとセットでご購入いただくだけ。<br>
+                    レーザー刻印でお名前・メッセージを美しく刻みます。
+                </p>
+                <div class="price-box">
+                    <span class="plus">+</span>
+                    <span class="yen">¥</span>
+                    <span class="num">680</span>
+                    <span class="tax">（税込）</span>
+                </div>
+                <br>
+                <a href="https://item.rakuten.co.jp/nanaple/fan-engraving/" class="eng-btn" target="_blank">
+                    名入れオプションページへ →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================
+     PRODUCTS
+======================================================== -->
+<section class="sec-products" id="products">
+    <div class="container">
+        <div class="tc">
+            <span class="eyebrow">Product Lineup</span>
+            <h2 class="heading">全商品ラインナップ</h2>
+            <p class="desc">お好みの一台を選んで、名入れ刻印オプションを一緒にカートへ</p>
+        </div>
+        <div class="products-grid">
+
+            <!-- 01 HDL-2116 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hdl-2116-top1.jpg"
+                         alt="HDL-2116" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">💨 BIG冷却プレート × 100段階</span>
+                    <p class="prod-name">冷却プレート ワイドヘッド BIG<br>大風量 3WAY ハンディファン</p>
+                    <p class="prod-spec">3,600mAh ｜ Type-C充電 ｜ ホワイト</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hdl-2116/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 02 HDL-2123 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hdl-2123-top1.jpg"
+                         alt="HDL-2123" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🍃 軽量190g スリムボディ</span>
+                    <p class="prod-name">冷却プレート 薄型スリム 軽量<br>3WAY ハンディファン</p>
+                    <p class="prod-spec">2,400mAh ｜ Type-C充電 ｜ ホワイト</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hdl-2123/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 03 BF-MP1185 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/bf-mp1185-top1.jpg"
+                         alt="BF-MP1185" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🎽 ベルト装着 ハンズフリー</span>
+                    <p class="prod-name">ベルトファン 3WAY<br>ハンズフリー ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#9CA3AF" title="グレー"></span>
+                        <span class="cdot" style="background:#60A5FA" title="ブルー"></span>
+                        <span class="cdot" style="background:#F9A8D4" title="ピンク"></span>
+                        <span class="cdot" style="background:#86EFAC" title="グリーン"></span>
+                    </div>
+                    <p class="prod-spec">3,500mAh ｜ Type-C充電 ｜ 全4色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/bf-mp1185/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 04 HF-MX5 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hf-mx5-top1.jpg"
+                         alt="HF-MX5" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">✨ メタルボディ 176g超軽量</span>
+                    <p class="prod-name">金属ボディ 大風量<br>メタルシリーズ ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#9CA3AF" title="グレー"></span>
+                        <span class="cdot" style="background:#D1D5DB" title="シルバー"></span>
+                    </div>
+                    <p class="prod-spec">4,500mAh ｜ Type-C充電 ｜ 全2色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hf-mx5/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 05 HDL-3595 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hdl-3595-top1.jpg"
+                         alt="HDL-3595" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">💧 冷却 ＋ ミスト 3in1最強涼感</span>
+                    <p class="prod-name">冷却プレート＋ミスト搭載<br>3in1 3WAY ハンディファン</p>
+                    <p class="prod-spec">3,600mAh ｜ Type-C充電 ｜ ホワイト</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hdl-3595/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 06 HDL-4677 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hdl-4677-top1.jpg"
+                         alt="HDL-4677" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">❄️ −10℃ミスト 瞬間冷却</span>
+                    <p class="prod-name">冷却ミスト搭載<br>3WAY ハンディファン</p>
+                    <p class="prod-spec">3,000mAh ｜ Type-C充電 ｜ ホワイト</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hdl-4677/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 07 CHF-M2 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/chf-m2-top1.jpg"
+                         alt="CHF-M2" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🔋 ペルチェ冷却 ＋ スマホ充電OK</span>
+                    <p class="prod-name">ペルチェ冷却＋モバイルバッテリー<br>4WAY ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#F9A8D4" title="ピンク"></span>
+                        <span class="cdot" style="background:#93C5FD" title="ブルー"></span>
+                        <span class="cdot" style="background:#E5E7EB" title="ホワイト"></span>
+                    </div>
+                    <p class="prod-spec">4,000mAh ｜ Type-C充電 ｜ 全3色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/chf-m2/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 08 HF-M7 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hf-m7-top1.jpg"
+                         alt="HF-M7" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🔄 ヘッドが180° フリーアングル</span>
+                    <p class="prod-name">3WAY フリーアングル<br>ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#E5E7EB" title="ホワイト"></span>
+                        <span class="cdot" style="background:#1F2937" title="ブラック"></span>
+                    </div>
+                    <p class="prod-spec">4,000mAh ｜ Type-C充電 ｜ 全2色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hf-m7/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 09 CHF-M5 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/chf-m5-top1.jpg"
+                         alt="CHF-M5" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🌸 コンパクトに100段階調整</span>
+                    <p class="prod-name">ペルチェ冷却 ミニサイズ<br>3WAY ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#F9A8D4" title="ピンク"></span>
+                        <span class="cdot" style="background:#9CA3AF" title="グレー"></span>
+                    </div>
+                    <p class="prod-spec">3,000mAh ｜ Type-C充電 ｜ 全2色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/chf-m5/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 10 HDL-3625 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/hdl-3625-top1.jpg"
+                         alt="HDL-3625" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">⚡ 10,000mAh 最長22時間</span>
+                    <p class="prod-name">超大容量 冷却 スペアプレート付<br>3WAY ハンディファン</p>
+                    <p class="prod-spec">10,000mAh ｜ Type-C充電 ｜ ブラック</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/hdl-3625/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 11 CHF-M1 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/chf-m1-top1.jpg"
+                         alt="CHF-M1" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🌺 ペルチェ冷却 かわいい2色</span>
+                    <p class="prod-name">ペルチェ冷却<br>3WAY ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#F9A8D4" title="ピンク"></span>
+                        <span class="cdot" style="background:#E5D3BB" title="ベージュ"></span>
+                    </div>
+                    <p class="prod-spec">3,000mAh ｜ Type-C充電 ｜ 全2色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/chf-m1/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 12 CHF-M3 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/chf-m3-top1.jpg"
+                         alt="CHF-M3" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">🌿 アロマ搭載 香りも楽しむ</span>
+                    <p class="prod-name">アロマ搭載 3in1<br>モバイルバッテリー機能付 3WAY</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#9CA3AF" title="グレー"></span>
+                        <span class="cdot" style="background:#E5E7EB" title="ホワイト"></span>
+                    </div>
+                    <p class="prod-spec">4,000mAh ｜ Type-C充電 ｜ 全2色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/chf-m3/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+            <!-- 13 MHF-M6 -->
+            <div class="prod-card">
+                <div class="prod-img-box">
+                    <img src="https://image.rakuten.co.jp/nanaple/cabinet/lifestyle/mhf-m6-top1.jpg"
+                         alt="MHF-M6" loading="lazy"
+                         onerror="this.style.minHeight='220px';this.removeAttribute('src')">
+                    <span class="prod-badge">名入れ対応</span>
+                </div>
+                <div class="prod-body">
+                    <span class="prod-feat">💧 ミスト搭載 軽量コンパクト</span>
+                    <p class="prod-name">ミスト搭載<br>3WAY ハンディファン</p>
+                    <div class="prod-colors">
+                        <span class="prod-colors-lbl">カラー</span>
+                        <span class="cdot" style="background:#E5E7EB" title="ホワイト"></span>
+                        <span class="cdot" style="background:#F9A8D4" title="ピンク"></span>
+                    </div>
+                    <p class="prod-spec">3,000mAh ｜ Type-C充電 ｜ 全2色</p>
+                    <a href="https://item.rakuten.co.jp/nanaple/mhf-m6/" class="prod-btn" target="_blank">詳細を見る →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================
+     HOW TO ORDER
+======================================================== -->
+<section class="sec-howto">
+    <div class="container tc">
+        <span class="eyebrow">How to Order</span>
+        <h2 class="heading">ご注文の流れ</h2>
+        <p class="desc">かんたん3ステップで名入れハンディファンが完成します</p>
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body" style="text-align:left">
+                    <h3>お好きなハンディファンを選ぶ</h3>
+                    <p>上のラインナップからお気に入りのモデルをチェック。カラーバリエーションや機能を比べてお選びください。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body" style="text-align:left">
+                    <h3>名入れ刻印オプション（+680円）をカートへ</h3>
+                    <p>
+                        <a href="https://item.rakuten.co.jp/nanaple/fan-engraving/" target="_blank">名入れオプションページ</a>から+680円のオプションを同時にカートへ追加。刻印したい文字はご購入後にご連絡いただけます。
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body" style="text-align:left">
+                    <h3>ご注文完了 → 刻印してお届け</h3>
+                    <p>丁寧にレーザー刻印して発送いたします。世界にひとつだけの名入れハンディファンをお楽しみください。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================
+     FOOTER CTA
+======================================================== -->
+<section class="sec-footer-cta">
+    <div class="footer-cta-inner container">
+        <h2>夏の推し活を、<br>もっと特別に。</h2>
+        <p>名入れで唯一無二のハンディファンを。チームで、ギフトに、推し活に。</p>
+        <a href="https://item.rakuten.co.jp/nanaple/fan-engraving/" class="footer-btn" target="_blank">
+            名入れオプションを見る →
+        </a>
+    </div>
+</section>
+
+<script>
+(function () {
+    /* ── Intersection Observer for scroll animations ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in-view');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+    /* Apply delays stored in data-delay attr */
+    document.querySelectorAll('[data-anim]').forEach(el => {
+        if (el.dataset.delay) el.style.transitionDelay = el.dataset.delay;
+        observer.observe(el);
+    });
+
+    /* ── Auto-stagger product cards ── */
+    const cardObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in-view');
+                cardObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.prod-card').forEach((card, i) => {
+        card.setAttribute('data-anim', '');
+        card.style.transitionDelay = (i % 3) * 0.1 + 's';
+        cardObs.observe(card);
+    });
+
+    /* ── Auto-stagger steps ── */
+    document.querySelectorAll('.step').forEach((step, i) => {
+        step.setAttribute('data-anim', 'left');
+        step.style.transitionDelay = i * 0.15 + 's';
+        observer.observe(step);
+    });
+})();
+</script>
+</body>
+</html>
